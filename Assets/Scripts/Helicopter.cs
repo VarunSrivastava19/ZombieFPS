@@ -6,10 +6,12 @@ public class Helicopter : MonoBehaviour
 	private bool called = false;
 	public AudioClip callSound;
 
+	private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start ()
 	{
-	
+		audioSource = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -17,8 +19,8 @@ public class Helicopter : MonoBehaviour
 	{
 		if (Input.GetButtonDown ("CallHeli") && !called) {
 			called = true;
-			//play sound
-			print ("heli calleld");
+			audioSource.clip = callSound;
+			audioSource.Play ();
 		}
 	}
 }
