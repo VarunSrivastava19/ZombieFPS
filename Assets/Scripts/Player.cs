@@ -4,15 +4,26 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
 	public Transform playerSpawnPoints;
-	// The parent of the spawn point
-	private bool reSpawn = false;
+	public AudioClip whatHappened;
 	public Helicopter helicopter;
 	private Transform[] spawnPoints;
 	private bool lastToggle = false;
+	private bool reSpawn = false;
+	private AudioSource innerVoice;
 
 	void Start ()
 	{
 		spawnPoints = playerSpawnPoints.GetComponentsInChildren<Transform> ();
+
+		AudioSource[] audioSources = GetComponents<AudioSource> ();
+		foreach (AudioSource audioSource in audioSources) {
+			if (audioSource.priority == 1) {
+				innerVoice = audioSource;
+			}
+		}
+
+		innerVoice.clip = whatHappened;
+		innerVoice.Play ();
 	}
 
 	void Update ()
