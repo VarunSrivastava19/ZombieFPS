@@ -5,8 +5,8 @@ public class Player : MonoBehaviour
 {
 	public Transform playerSpawnPoints;
 	// The parent of the spawn point
-	public bool reSpawn = false;
-
+	private bool reSpawn = false;
+	public Helicopter helicopter;
 	private Transform[] spawnPoints;
 	private bool lastToggle = false;
 
@@ -31,4 +31,9 @@ public class Player : MonoBehaviour
 		transform.position = spawnPoints [i].transform.position;
 	}
 
+	void OnFindClearArea ()
+	{
+		Debug.Log ("foudn clear arena in player");
+		helicopter.Call ();
+	}
 }
