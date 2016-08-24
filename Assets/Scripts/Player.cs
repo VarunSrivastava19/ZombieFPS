@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
 	void OnFindClearArea ()
 	{
-		Debug.Log ("foudn clear arena in player");
+		Debug.Log ("found clear arena in player");
 		helicopter.Call ();
 	}
 }
