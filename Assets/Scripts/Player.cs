@@ -4,35 +4,24 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
 	public Transform playerSpawnPoints;
-	public AudioClip whatHappened;
 	public Helicopter helicopter;
 	private Transform[] spawnPoints;
-	private bool lastToggle = false;
+	private bool lastRespawnToggle = false;
 	private bool reSpawn = false;
-	private AudioSource innerVoice;
 
 	void Start ()
 	{
 		spawnPoints = playerSpawnPoints.GetComponentsInChildren<Transform> ();
 
-		AudioSource[] audioSources = GetComponents<AudioSource> ();
-		foreach (AudioSource audioSource in audioSources) {
-			if (audioSource.priority == 1) {
-				innerVoice = audioSource;
-			}
-		}
-
-		innerVoice.clip = whatHappened;
-		innerVoice.Play ();
 	}
 
 	void Update ()
 	{
-		if (lastToggle != reSpawn) {
+		if (lastRespawnToggle != reSpawn) {
 			Respawn ();
 			reSpawn = false;
 		} else {
-			lastToggle = reSpawn;
+			lastRespawnToggle = reSpawn;
 		}
 	}
 
@@ -44,7 +33,11 @@ public class Player : MonoBehaviour
 
 	void OnFindClearArea ()
 	{
-		Debug.Log ("found clear arena in player");
-		helicopter.Call ();
+		Invoke ("DropFlare", 3f);
+	}
+
+	void DropFlare ()
+	{
+		//drop flare
 	}
 }
