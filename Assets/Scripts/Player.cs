@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
 	public Transform playerSpawnPoints;
 	public Helicopter helicopter;
+	public GameObject landingAreaPrefab;
 	private Transform[] spawnPoints;
 	private bool lastRespawnToggle = false;
 	private bool reSpawn = false;
@@ -38,6 +39,6 @@ public class Player : MonoBehaviour
 
 	void DropFlare ()
 	{
-		//drop flare
+		Instantiate (landingAreaPrefab, transform.position, transform.rotation);
 	}
 }
